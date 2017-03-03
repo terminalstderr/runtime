@@ -1,0 +1,7 @@
+# LLVM experiments
+
+See sibling directory 'runtime' for the actual
+llvm runtime (if I manage to build it).  This directory
+is for experiments to understand LLVM IR well enough to
+generate working code.
+
