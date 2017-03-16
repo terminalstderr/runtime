@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
  * Methods: 
  *    STR  (inherit, since we don't have concatenation yet)
  *    PRINT   (override)
- *    EQUALS  (inherit, since our EQUALS is busted) 
+ *    EQ  (inherit, since our EQ is busted) 
  *    and introducing
  *    PLUS    (add x and y values pointwise)
  * =================
@@ -79,7 +79,7 @@ struct class_Pt_struct {
   obj_Pt (*constructor) (obj_Int, obj_Int );  
   obj_String (*STR) (obj_Obj);           /* Inherit for now */
   obj_Pt (*PRINT) (obj_Pt);                 /* Overridden */
-  obj_Boolean (*EQUALS) (obj_Obj, obj_Obj); /* Inherited */
+  obj_Boolean (*EQ) (obj_Obj, obj_Obj); /* Inherited */
   obj_Pt (*PLUS) (obj_Pt, obj_Pt);          /* Introduced */
 };
 
@@ -146,7 +146,7 @@ struct  class_Pt_struct  the_class_Pt_struct = {
   new_Pt,     /* Constructor */
   Obj_method_STR, 
   Pt_method_PRINT, 
-  Obj_method_EQUALS,
+  Obj_method_EQ,
   Pt_method_PLUS
 };
 

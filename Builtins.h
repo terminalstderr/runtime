@@ -50,7 +50,7 @@ typedef struct obj_Nothing_struct* obj_Nothing;
  *    Constructor  (called after allocation) 
  *    STR 
  *    PRINT
- *    EQUALS
+ *    EQ
  * 
  * ==============
  */
@@ -67,7 +67,7 @@ struct class_Obj_struct {
   obj_Obj (*constructor) ( void );
   obj_String (*STR) (obj_Obj);
   obj_Nothing (*PRINT) (obj_Obj);
-  obj_Boolean (*EQUALS) (obj_Obj, obj_Obj);
+  obj_Boolean (*EQ) (obj_Obj, obj_Obj);
 }; 
 
 extern class_Obj the_class_Obj; /* Initialized in Builtins.c */
@@ -96,7 +96,7 @@ struct class_String_struct {
   obj_String (*constructor) ( void );
   obj_String (*STR) (obj_String);
   obj_Nothing (*PRINT) (obj_String);
-  obj_Boolean (*EQUALS) (obj_String, obj_Obj);
+  obj_Boolean (*EQ) (obj_String, obj_Obj);
   /* Method table: Introduced in String */
   obj_Boolean (*LESS) (obj_String, obj_String); 
 };
@@ -132,7 +132,7 @@ struct class_Boolean_struct {
   obj_Boolean (*constructor) ( void );
   obj_String (*STR) (obj_Boolean);
   obj_Nothing (*PRINT) (obj_Obj);               /* Inherit */
-  obj_Boolean (*EQUALS) (obj_Obj, obj_Obj); /* Inherit */ 
+  obj_Boolean (*EQ) (obj_Obj, obj_Obj); /* Inherit */ 
 };
 
 extern class_Boolean the_class_Boolean; 
@@ -154,7 +154,7 @@ extern obj_Boolean lit_true;
  *    Constructor  (called after allocation) 
  *    STR 
  *    PRINT
- *    EQUALS
+ *    EQ
  * 
  * ==============
  */
@@ -174,7 +174,7 @@ struct class_Nothing_struct {
   obj_Nothing (*constructor) ( void );
   obj_String (*STR) (obj_Nothing);
   obj_Nothing (*PRINT) (obj_Obj);               /* Inherited */
-  obj_Boolean (*EQUALS) (obj_Obj, obj_Obj); /* Inherited */
+  obj_Boolean (*EQ) (obj_Obj, obj_Obj); /* Inherited */
 }; 
 
 extern class_Nothing the_class_Nothing;
@@ -191,7 +191,7 @@ extern obj_Nothing nothing;
  * Methods: 
  *    STR  (override)
  *    PRINT   (inherit)
- *    EQUALS  (override)
+ *    EQ  (override)
  *    and introducing
  *    LESS
  *    PLUS    
@@ -212,7 +212,7 @@ struct class_Int_struct {
   obj_Int (*constructor) ( void );
   obj_String (*STR) (obj_Int);  /* Overridden */
   obj_Nothing (*PRINT) (obj_Obj);      /* Inherited */
-  obj_Boolean (*EQUALS) (obj_Int, obj_Obj); /* Overridden */
+  obj_Boolean (*EQ) (obj_Int, obj_Obj); /* Overridden */
   obj_Boolean (*LESS) (obj_Int, obj_Int);   /* Introduced */
   obj_Int (*PLUS) (obj_Int, obj_Int);       /* Introduced */
 };
@@ -233,14 +233,14 @@ extern obj_Int int_literal(int n);
  */
 obj_String Obj_method_STR(obj_Obj this);
 obj_Nothing Obj_method_PRINT(obj_Obj this);
-obj_Boolean Obj_method_EQUALS(obj_Obj this, obj_Obj other); 
+obj_Boolean Obj_method_EQ(obj_Obj this, obj_Obj other); 
 obj_String String_method_STR(obj_String this);
 obj_Nothing String_method_PRINT(obj_String this);
-obj_Boolean String_method_EQUALS(obj_String this, obj_Obj other); 
+obj_Boolean String_method_EQ(obj_String this, obj_Obj other); 
 obj_String Boolean_method_STR(obj_Boolean this); 
 obj_String Nothing_method_STR(obj_Nothing this);
 obj_String Int_method_STR(obj_Int this); 
-obj_Boolean Int_method_EQUALS(obj_Int this, obj_Obj other);
+obj_Boolean Int_method_EQ(obj_Int this, obj_Obj other);
 obj_Boolean Int_method_LESS(obj_Int this, obj_Int other);
 obj_Int Int_method_PLUS(obj_Int this, obj_Int other);
 

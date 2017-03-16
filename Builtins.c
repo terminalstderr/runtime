@@ -17,7 +17,7 @@
  *    Constructor  (called after allocation) 
  *    STR 
  *    PRINT
- *    EQUALS
+ *    EQ
  * 
  * ==============
  */
@@ -49,8 +49,8 @@ obj_Nothing Obj_method_PRINT(obj_Obj this) {
   return nothing;
 }
 
-/* Obj:EQUALS (Note we may want to replace this */
-obj_Boolean Obj_method_EQUALS(obj_Obj this, obj_Obj other) {
+/* Obj:EQ (Note we may want to replace this */
+obj_Boolean Obj_method_EQ(obj_Obj this, obj_Obj other) {
   if (this == other) {
     return lit_true;
   } else {
@@ -64,7 +64,7 @@ struct  class_Obj_struct  the_class_Obj_struct = {
   new_Obj,     /* Constructor */
   Obj_method_STR, 
   Obj_method_PRINT, 
-  Obj_method_EQUALS
+  Obj_method_EQ
 };
 
 class_Obj the_class_Obj = &the_class_Obj_struct; 
@@ -99,8 +99,8 @@ obj_Nothing String_method_PRINT(obj_String this) {
   return nothing;
 }
   
-/* String:EQUALS (Note we may want to replace this */
-obj_Boolean String_method_EQUALS(obj_String this, obj_Obj other) {
+/* String:EQ (Note we may want to replace this */
+obj_Boolean String_method_EQ(obj_String this, obj_Obj other) {
   obj_String other_str = (obj_String) other;
   /* But is it really? */
   if (other_str->clazz != the_class_String) {
@@ -118,7 +118,7 @@ struct  class_String_struct  the_class_String_struct = {
   new_String,     /* Constructor */
   String_method_STR, 
   String_method_PRINT, 
-  String_method_EQUALS
+  String_method_EQ
 };
 
 class_String the_class_String = &the_class_String_struct; 
@@ -171,7 +171,7 @@ struct  class_Boolean_struct  the_class_Boolean_struct = {
   new_Boolean,     /* Constructor */
   Boolean_method_STR, 
   Obj_method_PRINT, 
-  Obj_method_EQUALS
+  Obj_method_EQ
 };
 
 class_Boolean the_class_Boolean = &the_class_Boolean_struct; 
@@ -195,7 +195,7 @@ obj_Boolean lit_true = &lit_true_struct;
  *    Constructor  (called after allocation) 
  *    STR 
  *    PRINT
- *    EQUALS
+ *    EQ
  * 
  * ==============
  */
@@ -220,7 +220,7 @@ struct  class_Nothing_struct  the_class_Nothing_struct = {
   new_Nothing,     /* Constructor */
   Nothing_method_STR, 
   Obj_method_PRINT, 
-  Obj_method_EQUALS
+  Obj_method_EQ
 };
 
 class_Nothing the_class_Nothing = &the_class_Nothing_struct; 
@@ -261,8 +261,8 @@ obj_String Int_method_STR(obj_Int this) {
   return str_literal(rep); 
 }
 
-/* Int:EQUALS */
-obj_Boolean Int_method_EQUALS(obj_Int this, obj_Obj other) {
+/* Int:EQ */
+obj_Boolean Int_method_EQ(obj_Int this, obj_Obj other) {
   obj_Int other_int = (obj_Int) other; 
   /* But is it? */
   if (other_int->clazz != this->clazz) {
@@ -294,7 +294,7 @@ struct  class_Int_struct  the_class_Int_struct = {
   new_Int,     /* Constructor */
   Int_method_STR, 
   Obj_method_PRINT, 
-  Int_method_EQUALS,
+  Int_method_EQ,
   Int_method_LESS,
   Int_method_PLUS
 };
