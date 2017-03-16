@@ -40,6 +40,9 @@ typedef struct obj_String_struct* obj_String;
 struct obj_Boolean_struct;
 typedef struct obj_Boolean_struct* obj_Boolean;
 
+struct obj_Nothing_struct;
+typedef struct obj_Nothing_struct* obj_Nothing;
+
 /* ==============
  * Obj 
  * Fields: None
@@ -63,7 +66,7 @@ struct class_Obj_struct {
   /* Method table */
   obj_Obj (*constructor) ( void );
   obj_String (*STRING) (obj_Obj);
-  obj_Obj (*PRINT) (obj_Obj);
+  obj_Nothing (*PRINT) (obj_Obj);
   obj_Boolean (*EQUALS) (obj_Obj, obj_Obj);
 }; 
 
@@ -92,7 +95,7 @@ struct class_String_struct {
   /* Method table: Inherited or overridden */
   obj_String (*constructor) ( void );
   obj_String (*STRING) (obj_String);
-  obj_String (*PRINT) (obj_String);
+  obj_Nothing (*PRINT) (obj_String);
   obj_Boolean (*EQUALS) (obj_String, obj_Obj);
   /* Method table: Introduced in String */
   obj_Boolean (*LESS) (obj_String, obj_String); 
@@ -128,7 +131,7 @@ struct class_Boolean_struct {
   /* Method table: Inherited or overridden */
   obj_Boolean (*constructor) ( void );
   obj_String (*STRING) (obj_Boolean);
-  obj_Obj (*PRINT) (obj_Obj);               /* Inherit */
+  obj_Nothing (*PRINT) (obj_Obj);               /* Inherit */
   obj_Boolean (*EQUALS) (obj_Obj, obj_Obj); /* Inherit */ 
 };
 
@@ -170,7 +173,7 @@ struct class_Nothing_struct {
   /* Method table */
   obj_Nothing (*constructor) ( void );
   obj_String (*STRING) (obj_Nothing);
-  obj_Obj (*PRINT) (obj_Obj);               /* Inherited */
+  obj_Nothing (*PRINT) (obj_Obj);               /* Inherited */
   obj_Boolean (*EQUALS) (obj_Obj, obj_Obj); /* Inherited */
 }; 
 
@@ -208,7 +211,7 @@ struct class_Int_struct {
   /* Method table: Inherited or overridden */
   obj_Int (*constructor) ( void );
   obj_String (*STRING) (obj_Int);  /* Overridden */
-  obj_Obj (*PRINT) (obj_Obj);      /* Inherited */
+  obj_Nothing (*PRINT) (obj_Obj);      /* Inherited */
   obj_Boolean (*EQUALS) (obj_Int, obj_Obj); /* Overridden */
   obj_Boolean (*LESS) (obj_Int, obj_Int);   /* Introduced */
   obj_Int (*PLUS) (obj_Int, obj_Int);       /* Introduced */
@@ -229,10 +232,10 @@ extern obj_Int int_literal(int n);
  *================================
  */
 obj_String Obj_method_STRING(obj_Obj this);
-obj_Obj Obj_method_PRINT(obj_Obj this); 
+obj_Nothing Obj_method_PRINT(obj_Obj this);
 obj_Boolean Obj_method_EQUALS(obj_Obj this, obj_Obj other); 
 obj_String String_method_STRING(obj_String this);
-obj_String String_method_PRINT(obj_String this); 
+obj_Nothing String_method_PRINT(obj_String this);
 obj_Boolean String_method_EQUALS(obj_String this, obj_Obj other); 
 obj_String Boolean_method_STRING(obj_Boolean this); 
 obj_String Nothing_method_STRING(obj_Nothing this);
