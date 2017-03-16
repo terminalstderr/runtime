@@ -58,7 +58,9 @@ int main(int argc, char** argv) {
 /* Declarations based on pattern in Builtins.h */ 
 
 struct class_Pt_struct;
-typedef struct class_Pt_struct* class_Pt; 
+typedef struct class_Pt_struct* class_Pt;
+struct obj_Pt_struct;
+typedef struct obj_Pt_struct* obj_Pt;
 
 typedef struct obj_Pt_struct {
   class_Pt  clazz;
