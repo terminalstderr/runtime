@@ -43,10 +43,10 @@ obj_String Obj_method_STRING(obj_Obj this) {
 
 
 /* Obj:PRINT */
-obj_Obj Obj_method_PRINT(obj_Obj this) {
+obj_Nothing Obj_method_PRINT(obj_Obj this) {
   obj_String str = this->clazz->STRING(this);
   fprintf(stdout, "%s", str->text);
-  return this;
+  return nothing;
 }
 
 /* Obj:EQUALS (Note we may want to replace this */
@@ -94,9 +94,9 @@ obj_String String_method_STRING(obj_String this) {
 }
 
 /* String:PRINT */
-obj_String String_method_PRINT(obj_String this) {
+obj_Nothing String_method_PRINT(obj_String this) {
   fprintf(stdout, "%s", this->text);
-  return this;
+  return nothing;
 }
   
 /* String:EQUALS (Note we may want to replace this */
