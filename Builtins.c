@@ -128,7 +128,6 @@ class_String the_class_String = &the_class_String_struct;
  * from char*.  Use this to create string literals. 
  */
 obj_String str_literal(char *s) {
-  char *rep;
   obj_String str = the_class_String->constructor(); 
   str->text = s;
   return str;
