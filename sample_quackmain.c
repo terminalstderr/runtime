@@ -57,19 +57,23 @@ int main(int argc, char** argv) {
 
 /* Declarations based on pattern in Builtins.h */ 
 
+// Forward declaration of structs for class Pt
 struct class_Pt_struct;
 typedef struct class_Pt_struct* class_Pt;
+struct class_Pt_struct  the_class_Pt_struct;  /* So I can use it in PLUS */
+extern class_Pt the_class_Pt;
+
 struct obj_Pt_struct;
 typedef struct obj_Pt_struct* obj_Pt;
 
-typedef struct obj_Pt_struct {
+// Decleration of obj_Pt
+struct obj_Pt_struct {
   class_Pt  clazz;
   obj_Int x;
   obj_Int y;
-} * obj_Pt;
+};
 
-struct  class_Pt_struct  the_class_Pt_struct;  /* So I can use it in PLUS */ 
-
+// Decleration of class_Pt_struct
 struct class_Pt_struct {
   /* Method table */
   obj_Pt (*constructor) (obj_Int, obj_Int );  
@@ -79,10 +83,8 @@ struct class_Pt_struct {
   obj_Pt (*PLUS) (obj_Pt, obj_Pt);          /* Introduced */
 };
 
-extern class_Pt the_class_Pt;
 
 /* Definitions based on pattern in Builtins.c */
-
 /* Constructor */
 obj_Pt new_Pt(obj_Int x, obj_Int y ) {
   obj_Pt new_thing = (obj_Pt)
