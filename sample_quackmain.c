@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
  * Fields: 
  *    x, y: Int
  * Methods: 
- *    STRING  (inherit, since we don't have concatenation yet)
+ *    STR  (inherit, since we don't have concatenation yet)
  *    PRINT   (override)
  *    EQUALS  (inherit, since our EQUALS is busted) 
  *    and introducing
@@ -77,7 +77,7 @@ struct obj_Pt_struct {
 struct class_Pt_struct {
   /* Method table */
   obj_Pt (*constructor) (obj_Int, obj_Int );  
-  obj_String (*STRING) (obj_Obj);           /* Inherit for now */
+  obj_String (*STR) (obj_Obj);           /* Inherit for now */
   obj_Pt (*PRINT) (obj_Pt);                 /* Overridden */
   obj_Boolean (*EQUALS) (obj_Obj, obj_Obj); /* Inherited */
   obj_Pt (*PLUS) (obj_Pt, obj_Pt);          /* Introduced */
@@ -99,7 +99,7 @@ obj_Pt new_Pt(obj_Int x, obj_Int y ) {
   return new_thing; 
 }
 
-/* Pt:STRING --- omitted for now  */
+/* Pt:STR --- omitted for now  */
 
 /* Override PRINT method wit this Quack code: 
     def PRINT( ):Pt {
@@ -144,7 +144,7 @@ obj_Pt Pt_method_PLUS(obj_Pt this, obj_Pt other) {
 /* The Pt Class (a singleton) */
 struct  class_Pt_struct  the_class_Pt_struct = {
   new_Pt,     /* Constructor */
-  Obj_method_STRING, 
+  Obj_method_STR, 
   Pt_method_PRINT, 
   Obj_method_EQUALS,
   Pt_method_PLUS

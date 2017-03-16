@@ -6,6 +6,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -D_GNU_SOURCE")
 
 
 set(SOURCE_FILES
+    #generated.c
     Builtins.c
     Builtins.h
     sample_quackmain.c)
