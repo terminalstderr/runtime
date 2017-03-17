@@ -289,6 +289,18 @@ obj_Int Int_method_PLUS(obj_Int this, obj_Int other) {
   return int_literal(this->value + other->value);
 }
 
+obj_Int Int_method_MINUS(obj_Int this, obj_Int other) {
+  return int_literal(this->value - other->value);
+}
+
+obj_Int Int_method_MULTIPLY(obj_Int this, obj_Int other) {
+  return int_literal(this->value * other->value);
+}
+
+obj_Int Int_method_DIVIDE(obj_Int this, obj_Int other) {
+  return int_literal(this->value / other->value);
+}
+
 /* The Int Class (a singleton) */
 struct  class_Int_struct  the_class_Int_struct = {
   new_Int,     /* Constructor */
@@ -296,7 +308,10 @@ struct  class_Int_struct  the_class_Int_struct = {
   Obj_method_PRINT, 
   Int_method_EQ,
   Int_method_LESS,
-  Int_method_PLUS
+  Int_method_PLUS,
+  Int_method_MINUS,
+  Int_method_MULTIPLY,
+  Int_method_DIVIDE
 };
 
 class_Int the_class_Int = &the_class_Int_struct; 
