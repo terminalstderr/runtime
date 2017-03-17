@@ -76,11 +76,11 @@ struct obj_Pt_struct {
 // Decleration of class_Pt_struct
 struct class_Pt_struct {
   /* Method table */
-  obj_Pt (*constructor) (obj_Int, obj_Int );  
-  obj_String (*STR) (obj_Obj);           /* Inherit for now */
-  obj_Pt (*PRINT) (obj_Pt);                 /* Overridden */
-  obj_Boolean (*EQ) (obj_Obj, obj_Obj); /* Inherited */
-  obj_Pt (*PLUS) (obj_Pt, obj_Pt);          /* Introduced */
+  obj_Pt (*constructor) (obj_Int x, obj_Int y);  
+  obj_String (*STR) (obj_Obj this);           /* Inherit for now */
+  obj_Pt (*PRINT) (obj_Pt this);                 /* Overridden */
+  obj_Boolean (*EQ) (obj_Obj this, obj_Obj other); /* Inherited */
+  obj_Pt (*PLUS) (obj_Pt this, obj_Pt other);          /* Introduced */
 };
 
 

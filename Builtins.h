@@ -132,7 +132,10 @@ struct class_Boolean_struct {
   obj_Boolean (*constructor) ( void );
   obj_String (*STR) (obj_Boolean);
   obj_Nothing (*PRINT) (obj_Obj);               /* Inherit */
-  obj_Boolean (*EQ) (obj_Obj, obj_Obj); /* Inherit */ 
+  obj_Boolean (*EQ) (obj_Obj, obj_Obj);         /* Inherit */ 
+  obj_Boolean (*NOT) (obj_Boolean); 
+  obj_Boolean (*AND) (obj_Boolean, obj_Boolean); 
+  obj_Boolean (*OR)  (obj_Boolean, obj_Boolean); 
 };
 
 extern class_Boolean the_class_Boolean; 
@@ -218,6 +221,7 @@ struct class_Int_struct {
   obj_Int (*MINUS) (obj_Int, obj_Int);       /* Introduced */
   obj_Int (*MULTIPLY) (obj_Int, obj_Int);       /* Introduced */
   obj_Int (*DIVIDE) (obj_Int, obj_Int);       /* Introduced */
+  obj_Int (*NEGATE) (obj_Int);            /* Introduced */
 };
 
 extern class_Int the_class_Int; 
@@ -246,5 +250,9 @@ obj_String Int_method_STR(obj_Int this);
 obj_Boolean Int_method_EQ(obj_Int this, obj_Obj other);
 obj_Boolean Int_method_LESS(obj_Int this, obj_Int other);
 obj_Int Int_method_PLUS(obj_Int this, obj_Int other);
+obj_Int Int_method_MINUS(obj_Int this, obj_Int other);
+obj_Int Int_method_MULTIPLY(obj_Int this, obj_Int other);
+obj_Int Int_method_DIVIDE(obj_Int this, obj_Int other);
+obj_Int Int_method_NEGATE(obj_Int this);
 
 #endif

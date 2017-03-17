@@ -160,6 +160,27 @@ obj_String Boolean_method_STR(obj_Boolean this) {
   }
 }
 
+obj_Boolean Boolean_method_NOT(obj_Boolean this) {
+  if (this == lit_false) {
+    return lit_true;
+  }
+  return lit_false;
+}
+
+obj_Boolean Boolean_method_AND(obj_Boolean this, obj_Boolean other) {
+  if (this == other && this == lit_true) {
+    return lit_true;
+  }
+  return lit_false;
+}
+
+obj_Boolean Boolean_method_OR(obj_Boolean this, obj_Boolean other) {
+  if (this == lit_true || other == lit_true) {
+    return lit_true;
+  }
+  return lit_false;
+}
+
 /* Inherit Obj:EQUAL, since we have only two 
  * objects of class Boolean. 
  */
@@ -171,7 +192,10 @@ struct  class_Boolean_struct  the_class_Boolean_struct = {
   new_Boolean,     /* Constructor */
   Boolean_method_STR, 
   Obj_method_PRINT, 
-  Obj_method_EQ
+  Obj_method_EQ,
+  Boolean_method_NOT,
+  Boolean_method_AND,
+  Boolean_method_OR
 };
 
 class_Boolean the_class_Boolean = &the_class_Boolean_struct; 
@@ -301,6 +325,11 @@ obj_Int Int_method_DIVIDE(obj_Int this, obj_Int other) {
   return int_literal(this->value / other->value);
 }
 
+obj_Int Int_method_NEGATE(obj_Int this) {
+  return int_literal(-this->value);
+}
+
+
 /* The Int Class (a singleton) */
 struct  class_Int_struct  the_class_Int_struct = {
   new_Int,     /* Constructor */
@@ -311,7 +340,8 @@ struct  class_Int_struct  the_class_Int_struct = {
   Int_method_PLUS,
   Int_method_MINUS,
   Int_method_MULTIPLY,
-  Int_method_DIVIDE
+  Int_method_DIVIDE,
+  Int_method_NEGATE
 };
 
 class_Int the_class_Int = &the_class_Int_struct; 
