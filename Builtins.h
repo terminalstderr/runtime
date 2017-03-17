@@ -215,8 +215,11 @@ struct class_Int_struct {
   obj_Int (*constructor) ( void );
   obj_String (*STR) (obj_Int);  /* Overridden */
   obj_Nothing (*PRINT) (obj_Obj);      /* Inherited */
-  obj_Boolean (*EQ) (obj_Int, obj_Obj); /* Overridden */
+  obj_Boolean (*EQ) (obj_Int, obj_Int); /* Overridden */
   obj_Boolean (*LESS) (obj_Int, obj_Int);   /* Introduced */
+  obj_Boolean (*GREATER) (obj_Int, obj_Int);   /* Introduced */
+  obj_Boolean (*LESSEQ) (obj_Int, obj_Int);   /* Introduced */
+  obj_Boolean (*GREATEREQ) (obj_Int, obj_Int);   /* Introduced */
   obj_Int (*PLUS) (obj_Int, obj_Int);       /* Introduced */
   obj_Int (*MINUS) (obj_Int, obj_Int);       /* Introduced */
   obj_Int (*MULTIPLY) (obj_Int, obj_Int);       /* Introduced */
@@ -247,7 +250,7 @@ obj_Boolean String_method_EQ(obj_String this, obj_Obj other);
 obj_String Boolean_method_STR(obj_Boolean this); 
 obj_String Nothing_method_STR(obj_Nothing this);
 obj_String Int_method_STR(obj_Int this); 
-obj_Boolean Int_method_EQ(obj_Int this, obj_Obj other);
+obj_Boolean Int_method_EQ(obj_Int this, obj_Int other);
 obj_Boolean Int_method_LESS(obj_Int this, obj_Int other);
 obj_Int Int_method_PLUS(obj_Int this, obj_Int other);
 obj_Int Int_method_MINUS(obj_Int this, obj_Int other);

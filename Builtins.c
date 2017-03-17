@@ -286,7 +286,7 @@ obj_String Int_method_STR(obj_Int this) {
 }
 
 /* Int:EQ */
-obj_Boolean Int_method_EQ(obj_Int this, obj_Obj other) {
+obj_Boolean Int_method_EQ(obj_Int this, obj_Int other) {
   obj_Int other_int = (obj_Int) other; 
   /* But is it? */
   if (other_int->clazz != this->clazz) {
@@ -303,6 +303,27 @@ obj_Boolean Int_method_EQ(obj_Int this, obj_Obj other) {
 /* LESS (new method) */ 
 obj_Boolean Int_method_LESS(obj_Int this, obj_Int other) {
   if (this->value < other->value) {
+    return lit_true;
+  }
+  return lit_false;
+}
+
+obj_Boolean Int_method_GREATER(obj_Int this, obj_Int other) {
+  if (this->value > other->value) {
+    return lit_true;
+  }
+  return lit_false;
+}
+
+obj_Boolean Int_method_LESSEQ(obj_Int this, obj_Int other) {
+  if (this->value <= other->value) {
+    return lit_true;
+  }
+  return lit_false;
+}
+
+obj_Boolean Int_method_GREATEREQ(obj_Int this, obj_Int other) {
+  if (this->value > other->value) {
     return lit_true;
   }
   return lit_false;
@@ -337,6 +358,9 @@ struct  class_Int_struct  the_class_Int_struct = {
   Obj_method_PRINT, 
   Int_method_EQ,
   Int_method_LESS,
+  Int_method_GREATER,
+  Int_method_LESSEQ,
+  Int_method_GREATEREQ,
   Int_method_PLUS,
   Int_method_MINUS,
   Int_method_MULTIPLY,
