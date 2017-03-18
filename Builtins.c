@@ -30,35 +30,6 @@ obj_Obj new_Obj(  ) {
   new_thing->clazz = the_class_Obj;
   return new_thing; 
 }
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-
-int asprintf(char ** __restrict__ ret,
-             const char * __restrict__ format,
-             ...) {
-  va_list ap;
-  int len;
-  va_start(ap,format);
-  /* Get Length */
-  len = _vsnprintf(NULL,0,format,ap);
-  if (len < 0) goto _end;
-  /* +1 for \0 terminator. */
-  *ret = malloc(len + 1);
-  /* Check malloc fail*/
-  if (!*ret) {
-    len = -1;
-    goto _end;
-  }
-  /* Write String */
-  _vsnprintf(*ret,len+1,format,ap);
-  /* Terminate explicitly */
-  (*ret)[len] = '\0';
-  _end:
-  va_end(ap);
-  return len;
-}
-
 
 /* Obj:STR */
 obj_String Obj_method_STR(obj_Obj this) {
@@ -142,12 +113,31 @@ obj_Boolean String_method_EQ(obj_String this, obj_Obj other) {
   }
 }
 
+obj_Boolean String_method_LESS(obj_String this, obj_String other) {
+  if (strcmp(this->text, other->text) < 0) {
+    return lit_true;
+  } else {
+    return lit_false;
+  }
+}
+
+obj_String String_method_PLUS(obj_String this, obj_String other) {
+  size_t size = sizeof(char) * (strlen(this->text) + strlen(other->text) + 1);
+  char *tmp = (char*) malloc(size);
+  memset(tmp, 0, size);
+  strcpy(tmp, this->text);
+  strcat(tmp, other->text);
+  return str_literal(tmp);
+}
+
 /* The String Class (a singleton) */
 struct  class_String_struct  the_class_String_struct = {
   new_String,     /* Constructor */
   String_method_STR, 
   String_method_PRINT, 
-  String_method_EQ
+  String_method_EQ,
+  String_method_LESS,
+  String_method_PLUS
 };
 
 class_String the_class_String = &the_class_String_struct; 
@@ -221,10 +211,7 @@ struct  class_Boolean_struct  the_class_Boolean_struct = {
   new_Boolean,     /* Constructor */
   Boolean_method_STR, 
   Obj_method_PRINT, 
-  Obj_method_EQ,
-  Boolean_method_NOT,
-  Boolean_method_AND,
-  Boolean_method_OR
+  Obj_method_EQ
 };
 
 class_Boolean the_class_Boolean = &the_class_Boolean_struct; 

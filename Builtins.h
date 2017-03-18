@@ -98,7 +98,8 @@ struct class_String_struct {
   obj_Nothing (*PRINT) (obj_String);
   obj_Boolean (*EQ) (obj_String, obj_Obj);
   /* Method table: Introduced in String */
-  obj_Boolean (*LESS) (obj_String, obj_String); 
+  obj_Boolean (*LESS) (obj_String, obj_String);
+  obj_String (*PLUS) (obj_String, obj_String);
 };
 
 extern class_String the_class_String;
@@ -133,9 +134,9 @@ struct class_Boolean_struct {
   obj_String (*STR) (obj_Boolean);
   obj_Nothing (*PRINT) (obj_Obj);               /* Inherit */
   obj_Boolean (*EQ) (obj_Obj, obj_Obj);         /* Inherit */ 
-  obj_Boolean (*NOT) (obj_Boolean); 
-  obj_Boolean (*AND) (obj_Boolean, obj_Boolean); 
-  obj_Boolean (*OR)  (obj_Boolean, obj_Boolean); 
+//  obj_Boolean (*NOT) (obj_Boolean);
+//  obj_Boolean (*AND) (obj_Boolean, obj_Boolean);
+//  obj_Boolean (*OR)  (obj_Boolean, obj_Boolean);
 };
 
 extern class_Boolean the_class_Boolean; 
